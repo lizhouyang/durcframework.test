@@ -7,6 +7,8 @@ import org.durcframework.expression.ExpressionQuery;
 import org.durcframework.expression.SqlContent;
 import org.durcframework.expression.subexpression.ListExpression;
 import org.durcframework.expression.subexpression.ValueExpression;
+import org.durcframework.util.JsonUtil;
+import org.durcframework.util.ResultUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -67,5 +69,18 @@ public class StudentController extends CrudController<Student, StudentService> {
 		query.add(new ListExpression("id", Arrays.asList(31,37)));
 		query.addParam("mobile", "13398761567");
 		return this.query(query);
+	}
+	
+	// 通过主键查询某条记录
+	// http://localhost/durcframeworkTest/getById.do
+	@RequestMapping("/getById.do")
+	public ModelAndView getById(){
+		Student schStu = new Student();
+		schStu.setId(31);
+		
+		//Student stu = this.getService().get(schStu); // 这样也可以
+		Student stu = this.getService().get(31);
+		String json = JsonUtil.toJsonString(stu,getDateFormatPattern());		
+		return ResultUtil.buildModelAndView(json);
 	}
 }

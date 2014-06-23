@@ -20,6 +20,7 @@ public class StudentTranController extends CrudController<Student, StudentServic
 	@Autowired
 	private TransactionTemplate transactionTemplate;
 	
+	// http://localhost/durcframeworkTest/updateTran.do
 	@RequestMapping("/updateTran.do")
 	public ModelAndView updateTran() {
 		
@@ -29,7 +30,7 @@ public class StudentTranController extends CrudController<Student, StudentServic
 			public Student doInTransaction(TransactionStatus arg0) {
 				
 				try{
-					Student student = getService().getById(1);
+					Student student = getService().get(1);
 					student.setName("李四3");
 					getService().update(student);
 					int i = 1/0; // 模拟出错
@@ -43,6 +44,13 @@ public class StudentTranController extends CrudController<Student, StudentServic
 			}
 		});
 		
+		return success();
+	}
+	
+	// http://localhost/durcframeworkTest/updateTran2.do
+	@RequestMapping("/updateTran2.do")
+	public ModelAndView updateTran2() {
+		this.getService().updateStu();
 		return success();
 	}
 	

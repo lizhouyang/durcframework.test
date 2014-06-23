@@ -115,16 +115,4 @@ public class Student extends BaseEntity {
 	public String getGenderStr(){
 		return gender == 1 ? "男" : "女";
 	}
-
-	
-	@Override
-	public void setPk(Serializable id) {
-		this.id = (Integer)id;
-	}
-
-	@JSONField(serialize = false)
-	@Override
-	public Serializable getPk() {
-		return this.id;
-	}
 }

@@ -92,7 +92,7 @@
 	</update>
 	
 	
-	<select id="getById" resultMap="queryResultMap" parameterType="java.io.Serializable">
+	<select id="get" resultMap="queryResultMap" parameterType="java.io.Serializable">
 		SELECT t.ID AS id
 		,t.NAME AS name
 		,t.POLITICS_STATUS AS politicsStatus

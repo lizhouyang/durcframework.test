@@ -46,22 +46,22 @@
 		UPDATE department 
 		SET
 			department_name = #{departmentName,jdbcType=VARCHAR}
-		WHERE ID = #{id,jdbcType=INTEGER}
+		WHERE ID = #{pk,jdbcType=INTEGER}
 	</update>
 	
 	
-	<select id="getById" resultMap="queryResultMap" parameterType="java.io.Serializable">
+	<select id="get" resultMap="queryResultMap" parameterType="java.io.Serializable">
 		SELECT
 		t.ID AS id
 		,t.department_name AS departmentName
 
 		FROM department t
-		WHERE ID = #{id,jdbcType=INTEGER}
+		WHERE ID = #{pk,jdbcType=INTEGER}
 	</select>
 	
 	<delete id="del" parameterType="durcframework.test.department.entity.Department">
 		DELETE FROM department
-		WHERE ID = #{id,jdbcType=INTEGER}
+		WHERE ID = #{pk,jdbcType=INTEGER}
 	</delete>
 	
 </mapper>

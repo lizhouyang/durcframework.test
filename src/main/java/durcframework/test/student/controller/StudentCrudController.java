@@ -48,7 +48,7 @@ public class StudentCrudController extends CrudController<Student, StudentServic
 	@RequestMapping("/delStudent.do")
 	public ModelAndView delStudent(Student student) {
 		// 通过主键查询某一条记录
-		System.out.println(this.getService().getById(student.getPk()));
+		System.out.println(this.getService().get(student.getId()));
 		return this.delete(student);
 	}
 	
