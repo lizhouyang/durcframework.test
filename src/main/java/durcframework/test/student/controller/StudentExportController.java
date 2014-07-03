@@ -26,7 +26,7 @@ public class StudentExportController extends ExportController<Student, StudentSe
 
 	@Override
 	public String getTemplateFilePath() {
-		HttpServletRequest request = WebContext.get().getRequest();
+		HttpServletRequest request = WebContext.getInstance().getRequest();
 		String path = request.getSession().getServletContext().getRealPath("/");
 		// D:/xx/durcframework.test/src/main/webapp/webapp/login/student/student_export.xls
 		// 全路径

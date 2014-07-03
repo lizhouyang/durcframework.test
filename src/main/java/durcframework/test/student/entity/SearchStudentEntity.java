@@ -2,12 +2,10 @@ package durcframework.test.student.entity;
 
 import java.util.Date;
 
-import org.durcframework.entity.SearchEntity;
 import org.durcframework.expression.annotation.ListField;
 import org.durcframework.expression.annotation.ValueField;
 import org.durcframework.util.DateUtil;
 
-import durcframework.test.common.SearchBUI;
 import durcframework.test.common.SearchEasyUI;
 
 /**

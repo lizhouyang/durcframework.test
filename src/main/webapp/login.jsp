@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户登录</title>
-<jsp:include page="common/easyui_lib.jsp"></jsp:include>
+<jsp:include page="easyui_lib.jsp"></jsp:include>
 </head>
 <body>
 <div id="win" class="easyui-window" 
