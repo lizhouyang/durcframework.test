@@ -29,15 +29,16 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
+	<!-- 如果项目有用户登录,用此filter -->
 	<filter>
-		<filter-name>backUserFilter</filter-name>
-		<filter-class>durcframework.test.common.BackUserFilter</filter-class>
+		<filter-name>userFilter</filter-name>
+		<filter-class>org.durcframework.common.UserFilter</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>backUserFilter</filter-name>
+		<filter-name>userFilter</filter-name>
 		<url-pattern>*.do</url-pattern>
 		<url-pattern>*.jsp</url-pattern>
-	</filter-mapping> 
+	</filter-mapping>
 	
 	<!-- 统一编码 -->
 	<filter>
