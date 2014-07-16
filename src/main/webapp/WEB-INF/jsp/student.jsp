@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>学生列表</title>
+<link id="tableCss" rel="stylesheet" type="text/css" href="${ctx}style/table/OrangesInTheSky.css">
 <script type="text/javascript">
 function goPage(index){
 	document.getElementById('pageIndex').value = index;
@@ -18,6 +19,10 @@ function searchStu(){
 	goPage(1);
 }
 
+function tableThemeEvent(target){
+	var link = document.getElementById('tableCss');
+	link.setAttribute('href','${ctx}style/table/' + target.value + '.css');
+}
 </script>
 </head>
 <body>
@@ -29,6 +34,11 @@ function searchStu(){
 	<input type="button" onclick="searchStu()" value="查询">
 </form>
 <hr>
+表格主题:<select onchange="tableThemeEvent(this)">
+<option value="OrangesInTheSky">默认主题</option>
+<option value="ChromeDeLaChrome">ChromeDeLaChrome</option>
+<option value="CuscoSky">CuscoSky</option>
+</select>
 <table>
 	<thead>
 		<tr>
@@ -48,7 +58,11 @@ function searchStu(){
 	查看durcframework.test.student.controller.StudentJspController类
 	 -->
 		<c:forEach items="${resultHolder.list}" var="stu" varStatus="stat">
-			<tr>
+			<tr
+			<c:if test="${stat.index%2==0}">
+				class="odd"
+			</c:if>
+			>
 				<td>${stat.index+1}</td>
 				<td>${stu.stuNo}</td>
 				<td>${stu.name}</td>
@@ -61,15 +75,22 @@ function searchStu(){
 			</tr>
 		</c:forEach>
 	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="9">
+				<a href="javascript:void(0)" onclick="goPage(${resultHolder.firstPageIndex})">首页</a>
+				<a href="javascript:void(0)" onclick="goPage(${resultHolder.prePageIndex})">上一页</a>
+				<a href="javascript:void(0)" onclick="goPage(${resultHolder.nextPageIndex})">下一页</a>
+				<a href="javascript:void(0)" onclick="goPage(${resultHolder.lastPageIndex})">尾页</a>
+				|
+				第 <c:out value="${resultHolder.currentPageIndex}"/>/<c:out value="${resultHolder.pageCount}"/> 页 |
+				共<c:out value="${resultHolder.total}"/>条记录 
+			</td>
+		</tr>
+	</tfoot>
 	</table>
 
-<a href="javascript:void(0)" onclick="goPage(${resultHolder.firstPageIndex})">首页</a>
-<a href="javascript:void(0)" onclick="goPage(${resultHolder.prePageIndex})">上一页</a>
-<a href="javascript:void(0)" onclick="goPage(${resultHolder.nextPageIndex})">下一页</a>
-<a href="javascript:void(0)" onclick="goPage(${resultHolder.lastPageIndex})">尾页</a>
-|
-第 <c:out value="${resultHolder.currentPageIndex}"/>/<c:out value="${resultHolder.pageCount}"/> 页 | 
-共<c:out value="${resultHolder.total}"/>条记录 
+
 
 </body>
 </html>
