@@ -1,22 +1,19 @@
 package durcframework.test.student.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import org.durcframework.entity.BaseEntity;
+import org.durcframework.entity.ValidateAware;
 import org.hibernate.validator.constraints.NotEmpty;
-
-import com.alibaba.fastjson.annotation.JSONField;
 
 /**
  * @author thc
  * 2012-09-21
  */
-public class Student extends BaseEntity {
+public class Student implements ValidateAware {
 
 	@Min(1)
 	private Integer id;
@@ -37,14 +34,6 @@ public class Student extends BaseEntity {
 	private Date registDate = new Date();
 	private Date birthday;
 	
-	@Override
-	protected boolean isNeedValidate() {
-		// 开启验证
-		return true;
-		// 关闭验证
-//		return false;
-	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}

@@ -6,7 +6,7 @@ import javax.validation.ConstraintViolation;
 
 import junit.framework.TestCase;
 
-import org.durcframework.entity.BaseEntity;
+import org.durcframework.entity.ValidateHolder;
 import org.durcframework.util.ValidateUtil;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -25,21 +25,18 @@ public class HibernateValidateTest extends TestCase {
 		stu.setStuNo("1000003210000032100000321000003210000032");
 	}
 
-	private BaseEntity getObj() {
+	private Object getObj() {
 		return stu;
 	}
 
 	@Test
 	public void testValidate() {
-		Set<ConstraintViolation<BaseEntity>> set = ValidateUtil
-				.validate(getObj());
-
-		for (ConstraintViolation<BaseEntity> c : set) {
+		ValidateHolder holder = ValidateUtil.validate(getObj());
+		Set<ConstraintViolation<Object>> set = holder.getConstraintViolations();
+		for (ConstraintViolation<Object> c : set) {
 			Student s = (Student)c.getRootBean();
 			System.out.println(c.getPropertyPath().toString()+"--" + c.getMessage());
 		}
-
-		System.out.println(getObj().validate());
 
 	}
 

@@ -1,8 +1,7 @@
 package durcframework.test.department.entity;
 
-import org.durcframework.entity.BaseEntity;
 
-public class Department extends BaseEntity {
+public class Department {
 
 	private Integer id;
 	private String departmentName;
