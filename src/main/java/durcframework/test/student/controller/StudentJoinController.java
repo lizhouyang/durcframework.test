@@ -3,8 +3,6 @@ package durcframework.test.student.controller;
 import org.durcframework.controller.SearchController;
 import org.durcframework.expression.ExpressionQuery;
 import org.durcframework.expression.subexpression.InnerJoinExpression;
-import org.durcframework.expression.subexpression.LeftJoinExpression;
-import org.durcframework.expression.subexpression.RightJoinExpression;
 import org.durcframework.expression.subexpression.ValueExpression;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,23 +40,5 @@ public class StudentJoinController extends SearchController<Student, StudentServ
 		return this.queryAll(query);
 	}
 	
-	/**
-	 * 左连接查询
-	 * @return
-	 */
-	// http://localhost/durcframeworkTest/leftJoin.do
-	@RequestMapping("/leftJoin.do")
-	public ModelAndView leftJoin(){
-		// 关联DEPARTMENT表,并且查询外语系的学生
-		ExpressionQuery query = new ExpressionQuery();
-		// 关联DEPARTMENT表
-		query.addJoinExpression(new LeftJoinExpression("department", "t2", "DEPARTMENT", "ID"));
-		// 查询外语系的学生
-		query.add(new ValueExpression("t2.department_name", "外语系"));
-		// 返回查询结果
-		return this.queryAll(query);
-	}
-	
-	// 同理还有右连接RightJoinExpression
 	
 }
