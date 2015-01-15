@@ -18,7 +18,6 @@ public class StudentService extends CrudService<Student, StudentDao> {
 		}else{
 			stu.setName("Jim");
 		}
-		
 		update(stu);
 		
 		int i = 1/0; // 模拟出错

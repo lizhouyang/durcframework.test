@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.durcframework.controller.CrudController;
 import org.durcframework.expression.ExpressionQuery;
 import org.durcframework.expression.SqlContent;
+import org.durcframework.expression.subexpression.LikeRightExpression;
 import org.durcframework.expression.subexpression.ListExpression;
 import org.durcframework.expression.subexpression.ValueExpression;
 import org.durcframework.util.JsonUtil;
@@ -37,7 +38,7 @@ public class StudentController extends CrudController<Student, StudentService> {
 	public ModelAndView list2() {
 		ExpressionQuery query = new ExpressionQuery();
 		query.add(new ValueExpression("gender", "=",1));
-		query.add(new ValueExpression("mobile", "like","133"));
+		query.add(new LikeRightExpression("mobile", "133"));
 		return this.query(query);
 	}
 	
